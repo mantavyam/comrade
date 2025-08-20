@@ -1,4 +1,3 @@
-```markdown
 # Comrade - Defense Aspirants App
 
 ## Overview

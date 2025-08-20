@@ -85,6 +85,7 @@ class KSizes {
   static const double elevationLow = 2.0;
   static const double elevationMedium = 4.0;
   static const double elevationHigh = 8.0;
+  static const double elevationLarge = 12.0;
   static const double elevationVeryHigh = 16.0;
 
   // Animation Durations (in milliseconds)

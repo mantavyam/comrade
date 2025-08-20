@@ -88,6 +88,7 @@ unlinked_spec.ds
 **/ios/Runner/GeneratedPluginRegistrant.*
 
 # macOS
+.DS_Store
 **/Flutter/ephemeral/
 **/Pods/
 **/macos/Flutter/GeneratedPluginRegistrant.swift

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../constants/k_colors.dart';
 import '../constants/k_sizes.dart';
-import '../constants/k_strings.dart';
 import '../../home/presentation/home_screen.dart';
-import '../../profile/presentation/profile_screen.dart';
+import '../../stories/presentation/stories_screen.dart';
+import '../../bookmarks/presentation/bookmarks_screen.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -20,7 +20,6 @@ class _MainNavigationState extends State<MainNavigation> {
     const EditorialsScreen(),
     const BookmarksScreen(),
     const StoriesScreen(),
-    const ProfileScreen(),
   ];
 
   @override
@@ -57,31 +56,21 @@ class _MainNavigationState extends State<MainNavigation> {
                 index: 0,
                 icon: Icons.home_outlined,
                 activeIcon: Icons.home,
-                label: KStrings.home,
               ),
               _buildNavItem(
                 index: 1,
                 icon: Icons.article_outlined,
                 activeIcon: Icons.article,
-                label: KStrings.editorials,
               ),
               _buildNavItem(
                 index: 2,
                 icon: Icons.bookmark_outline,
                 activeIcon: Icons.bookmark,
-                label: KStrings.bookmarks,
               ),
               _buildNavItem(
                 index: 3,
                 icon: Icons.auto_stories_outlined,
                 activeIcon: Icons.auto_stories,
-                label: KStrings.stories,
-              ),
-              _buildNavItem(
-                index: 4,
-                icon: Icons.person_outline,
-                activeIcon: Icons.person,
-                label: KStrings.profile,
               ),
             ],
           ),
@@ -94,10 +83,9 @@ class _MainNavigationState extends State<MainNavigation> {
     required int index,
     required IconData icon,
     required IconData activeIcon,
-    required String label,
   }) {
     final isSelected = _currentIndex == index;
-    
+
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -105,169 +93,58 @@ class _MainNavigationState extends State<MainNavigation> {
         });
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: KSizes.padding2x,
-          vertical: KSizes.padding1x,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              isSelected ? activeIcon : icon,
-              size: KSizes.iconM,
-              color: isSelected 
-                  ? KColors.bottomNavSelected 
-                  : KColors.bottomNavUnselected,
-            ),
-            const SizedBox(height: KSizes.margin1x),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: KSizes.fontSizeXS,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-                color: isSelected 
-                    ? KColors.bottomNavSelected 
-                    : KColors.bottomNavUnselected,
-              ),
-            ),
-          ],
+        padding: const EdgeInsets.all(KSizes.padding4x),
+        child: Icon(
+          isSelected ? activeIcon : icon,
+          size: KSizes.iconL,
+          color: isSelected
+              ? KColors.bottomNavSelected
+              : KColors.bottomNavUnselected,
         ),
       ),
     );
   }
 }
 
-// Placeholder screens - will be implemented later
+// Placeholder screen for editorials - will be implemented later
 class EditorialsScreen extends StatelessWidget {
   const EditorialsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(KStrings.editorials),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.article,
-              size: KSizes.iconXXL,
-              color: KColors.textSecondary,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(KSizes.padding6x),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.article,
+                  size: KSizes.iconXXL,
+                  color: KColors.textSecondary.withValues(alpha: 0.5),
+                ),
+                const SizedBox(height: KSizes.margin4x),
+                Text(
+                  'Editorials',
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: KColors.textSecondary,
+                  ),
+                ),
+                const SizedBox(height: KSizes.margin2x),
+                Text(
+                  'Coming Soon',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: KColors.textSecondary,
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: KSizes.margin4x),
-            Text(
-              'Editorials Screen',
-              style: TextStyle(
-                fontSize: KSizes.fontSizeXL,
-                fontWeight: FontWeight.w600,
-                color: KColors.textPrimary,
-              ),
-            ),
-            SizedBox(height: KSizes.margin2x),
-            Text(
-              'Coming Soon',
-              style: TextStyle(
-                fontSize: KSizes.fontSizeM,
-                color: KColors.textSecondary,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
   }
 }
-
-class BookmarksScreen extends StatelessWidget {
-  const BookmarksScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(KStrings.bookmarks),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.bookmark,
-              size: KSizes.iconXXL,
-              color: KColors.textSecondary,
-            ),
-            SizedBox(height: KSizes.margin4x),
-            Text(
-              'Bookmarks Screen',
-              style: TextStyle(
-                fontSize: KSizes.fontSizeXL,
-                fontWeight: FontWeight.w600,
-                color: KColors.textPrimary,
-              ),
-            ),
-            SizedBox(height: KSizes.margin2x),
-            Text(
-              'Coming Soon',
-              style: TextStyle(
-                fontSize: KSizes.fontSizeM,
-                color: KColors.textSecondary,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class StoriesScreen extends StatelessWidget {
-  const StoriesScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(KStrings.stories),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.auto_stories,
-              size: KSizes.iconXXL,
-              color: KColors.textSecondary,
-            ),
-            SizedBox(height: KSizes.margin4x),
-            Text(
-              'Stories & Quiz Screen',
-              style: TextStyle(
-                fontSize: KSizes.fontSizeXL,
-                fontWeight: FontWeight.w600,
-                color: KColors.textPrimary,
-              ),
-            ),
-            SizedBox(height: KSizes.margin2x),
-            Text(
-              'Coming Soon',
-              style: TextStyle(
-                fontSize: KSizes.fontSizeM,
-                color: KColors.textSecondary,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// ProfileScreen is now imported from profile/presentation/profile_screen.dart

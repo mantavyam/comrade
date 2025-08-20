@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper_view/flutter_swiper_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/constants/k_colors.dart';
 import '../../core/constants/k_sizes.dart';
 import '../../core/constants/k_strings.dart';
+import '../../auth/application/auth_cubit.dart';
+import '../../auth/application/auth_state.dart';
+import '../../profile/presentation/profile_screen.dart';
 import '../../news/domain/news_model.dart';
-import '../presentation/widgets/news_card.dart';
+import '../widgets/news_card.dart';
+import '../widgets/expanded_news_detail.dart';
+import '../widgets/notifications_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final SwiperController _swiperController = SwiperController();
+  final PageController _pageController = PageController();
   int _currentIndex = 0;
 
   // Mock news data - will be replaced with real data from API
@@ -75,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    _swiperController.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -85,202 +90,160 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Header
-            _buildHeader(),
-            
-            // Main Content - Swipeable Cards
+            // Top Navigation Bar
+            _buildTopNavBar(context),
+
+            // Main Content - Scrollable Cards
             Expanded(
-              child: _buildSwipeableCards(),
+              child: _buildScrollableCards(),
             ),
-            
-            // Bottom Actions
-            _buildBottomActions(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildTopNavBar(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(KSizes.padding6x),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      padding: const EdgeInsets.symmetric(
+        horizontal: KSizes.padding6x,
+        vertical: KSizes.padding4x,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    KStrings.pickYourFuture,
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
+          // Profile Avatar
+          BlocBuilder<AuthCubit, AuthState>(
+            builder: (context, state) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileScreen(),
                     ),
-                  ),
-                  const SizedBox(height: KSizes.margin1x),
-                  Text(
-                    KStrings.dailyNews,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: KColors.textSecondary,
-                    ),
-                  ),
-                ],
-              ),
-              
-              // Profile/Settings Icon
-              IconButton(
-                onPressed: () {
-                  // Navigate to profile
+                  );
                 },
-                icon: const Icon(
-                  Icons.account_circle,
-                  size: KSizes.iconXL,
-                  color: KColors.primary,
+                child: Container(
+                  width: KSizes.avatarM,
+                  height: KSizes.avatarM,
+                  decoration: BoxDecoration(
+                    color: KColors.primary,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: KColors.primaryLight, width: 2),
+                  ),
+                  child: (state.user?.profileImageUrl.isNotEmpty == true)
+                      ? ClipOval(
+                          child: Image.network(
+                            state.user!.profileImageUrl,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return _buildDefaultAvatar(state.user?.name ?? 'U');
+                            },
+                          ),
+                        )
+                      : _buildDefaultAvatar(state.user?.name ?? 'U'),
+                ),
+              );
+            },
+          ),
+
+          // Title
+          Column(
+            children: [
+              Text(
+                KStrings.pickYourFuture,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
           ),
-          
-          const SizedBox(height: KSizes.margin4x),
-          
-          // Progress Indicator
-          Row(
-            children: [
-              Expanded(
-                child: LinearProgressIndicator(
-                  value: (_currentIndex + 1) / _mockNews.length,
-                  backgroundColor: KColors.border,
-                  valueColor: const AlwaysStoppedAnimation<Color>(KColors.primary),
+
+          // Notifications Icon
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const NotificationsScreen(),
                 ),
-              ),
-              const SizedBox(width: KSizes.margin3x),
-              Text(
-                '${_currentIndex + 1}/${_mockNews.length}',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: KColors.textSecondary,
+              );
+            },
+            icon: Stack(
+              children: [
+                const Icon(
+                  Icons.notifications_outlined,
+                  size: KSizes.iconL,
+                  color: KColors.textPrimary,
                 ),
-              ),
-            ],
+                // Notification badge
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: Container(
+                    width: 8,
+                    height: 8,
+                    decoration: const BoxDecoration(
+                      color: KColors.error,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildSwipeableCards() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: KSizes.padding4x),
-      child: Swiper(
-        controller: _swiperController,
-        itemCount: _mockNews.length,
-        itemBuilder: (context, index) {
-          return NewsCard(
+  Widget _buildDefaultAvatar(String name) {
+    return Center(
+      child: Text(
+        name.isNotEmpty ? name[0].toUpperCase() : 'U',
+        style: const TextStyle(
+          fontSize: KSizes.fontSizeL,
+          fontWeight: FontWeight.bold,
+          color: KColors.textOnPrimary,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildScrollableCards() {
+    return PageView.builder(
+      controller: _pageController,
+      scrollDirection: Axis.vertical,
+      itemCount: _mockNews.length,
+      onPageChanged: (index) {
+        setState(() {
+          _currentIndex = index;
+        });
+      },
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: KSizes.padding4x,
+            vertical: KSizes.padding2x,
+          ),
+          child: NewsCard(
             news: _mockNews[index],
+            onTap: () => _openFullNews(_mockNews[index]),
             onBookmarkTap: () => _toggleBookmark(index),
             onShareTap: () => _shareNews(_mockNews[index]),
-            onReadMoreTap: () => _readFullNews(_mockNews[index]),
-          );
-        },
-        onIndexChanged: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        layout: SwiperLayout.STACK,
-        itemWidth: MediaQuery.of(context).size.width * 0.85,
-        itemHeight: KSizes.cardHeight,
-        loop: false,
-        duration: KSizes.animationMedium,
-        curve: Curves.easeInOut,
-      ),
+          ),
+        );
+      },
     );
   }
 
-  Widget _buildBottomActions() {
-    return Container(
-      padding: const EdgeInsets.all(KSizes.padding6x),
-      child: Column(
-        children: [
-          // Action Buttons Row
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildActionButton(
-                icon: Icons.close,
-                label: 'Skip',
-                color: KColors.error,
-                onTap: _skipNews,
-              ),
-              _buildActionButton(
-                icon: Icons.bookmark_outline,
-                label: 'Save',
-                color: KColors.bookmark,
-                onTap: _bookmarkNews,
-              ),
-              _buildActionButton(
-                icon: Icons.favorite_outline,
-                label: 'Like',
-                color: KColors.primary,
-                onTap: _likeNews,
-              ),
-            ],
-          ),
-          
-          const SizedBox(height: KSizes.margin4x),
-          
-          // Continue Reading Button
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: _currentIndex < _mockNews.length - 1 ? null : _showEndOfCards,
-              child: Text(
-                _currentIndex < _mockNews.length - 1 
-                    ? KStrings.keepReading 
-                    : KStrings.endOfCards,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildActionButton({
-    required IconData icon,
-    required String label,
-    required Color color,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: KSizes.iconXXL,
-            height: KSizes.iconXXL,
-            decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.1),
-              shape: BoxShape.circle,
-              border: Border.all(color: color, width: 2),
-            ),
-            child: Icon(
-              icon,
-              color: color,
-              size: KSizes.iconL,
-            ),
-          ),
-          const SizedBox(height: KSizes.margin1x),
-          Text(
-            label,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: color,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
+  void _openFullNews(NewsModel news) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ExpandedNewsDetail(
+          news: news,
+          onBookmarkTap: () => _toggleBookmark(_mockNews.indexOf(news)),
+          onShareTap: () => _shareNews(news),
+        ),
       ),
     );
   }
@@ -314,55 +277,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _readFullNews(NewsModel news) {
-    // Navigate to full news article
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Opening: ${news.title}'),
-        duration: const Duration(seconds: 1),
-      ),
-    );
-  }
 
-  void _skipNews() {
-    if (_currentIndex < _mockNews.length - 1) {
-      _swiperController.next();
-    }
-  }
-
-  void _bookmarkNews() {
-    _toggleBookmark(_currentIndex);
-  }
-
-  void _likeNews() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Liked!'),
-        duration: Duration(seconds: 1),
-      ),
-    );
-  }
-
-  void _showEndOfCards() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text(KStrings.endOfCards),
-        content: const Text('You\'ve reached the end of today\'s news cards.'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              // Navigate to more news or quiz
-            },
-            child: const Text(KStrings.attemptQuiz),
-          ),
-        ],
-      ),
-    );
-  }
 }

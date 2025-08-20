@@ -15,6 +15,271 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
+UserStats _$UserStatsFromJson(Map<String, dynamic> json) {
+  return _UserStats.fromJson(json);
+}
+
+/// @nodoc
+mixin _$UserStats {
+  int get currentStreak => throw _privateConstructorUsedError;
+  int get bestStreak => throw _privateConstructorUsedError;
+  int get quizzesTaken => throw _privateConstructorUsedError;
+  int get minutesPracticed => throw _privateConstructorUsedError;
+  List<bool> get weeklyStreak => throw _privateConstructorUsedError;
+
+  /// Serializes this UserStats to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of UserStats
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $UserStatsCopyWith<UserStats> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserStatsCopyWith<$Res> {
+  factory $UserStatsCopyWith(UserStats value, $Res Function(UserStats) then) =
+      _$UserStatsCopyWithImpl<$Res, UserStats>;
+  @useResult
+  $Res call({
+    int currentStreak,
+    int bestStreak,
+    int quizzesTaken,
+    int minutesPracticed,
+    List<bool> weeklyStreak,
+  });
+}
+
+/// @nodoc
+class _$UserStatsCopyWithImpl<$Res, $Val extends UserStats>
+    implements $UserStatsCopyWith<$Res> {
+  _$UserStatsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of UserStats
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? currentStreak = null,
+    Object? bestStreak = null,
+    Object? quizzesTaken = null,
+    Object? minutesPracticed = null,
+    Object? weeklyStreak = null,
+  }) {
+    return _then(
+      _value.copyWith(
+            currentStreak: null == currentStreak
+                ? _value.currentStreak
+                : currentStreak // ignore: cast_nullable_to_non_nullable
+                      as int,
+            bestStreak: null == bestStreak
+                ? _value.bestStreak
+                : bestStreak // ignore: cast_nullable_to_non_nullable
+                      as int,
+            quizzesTaken: null == quizzesTaken
+                ? _value.quizzesTaken
+                : quizzesTaken // ignore: cast_nullable_to_non_nullable
+                      as int,
+            minutesPracticed: null == minutesPracticed
+                ? _value.minutesPracticed
+                : minutesPracticed // ignore: cast_nullable_to_non_nullable
+                      as int,
+            weeklyStreak: null == weeklyStreak
+                ? _value.weeklyStreak
+                : weeklyStreak // ignore: cast_nullable_to_non_nullable
+                      as List<bool>,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$UserStatsImplCopyWith<$Res>
+    implements $UserStatsCopyWith<$Res> {
+  factory _$$UserStatsImplCopyWith(
+    _$UserStatsImpl value,
+    $Res Function(_$UserStatsImpl) then,
+  ) = __$$UserStatsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    int currentStreak,
+    int bestStreak,
+    int quizzesTaken,
+    int minutesPracticed,
+    List<bool> weeklyStreak,
+  });
+}
+
+/// @nodoc
+class __$$UserStatsImplCopyWithImpl<$Res>
+    extends _$UserStatsCopyWithImpl<$Res, _$UserStatsImpl>
+    implements _$$UserStatsImplCopyWith<$Res> {
+  __$$UserStatsImplCopyWithImpl(
+    _$UserStatsImpl _value,
+    $Res Function(_$UserStatsImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UserStats
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? currentStreak = null,
+    Object? bestStreak = null,
+    Object? quizzesTaken = null,
+    Object? minutesPracticed = null,
+    Object? weeklyStreak = null,
+  }) {
+    return _then(
+      _$UserStatsImpl(
+        currentStreak: null == currentStreak
+            ? _value.currentStreak
+            : currentStreak // ignore: cast_nullable_to_non_nullable
+                  as int,
+        bestStreak: null == bestStreak
+            ? _value.bestStreak
+            : bestStreak // ignore: cast_nullable_to_non_nullable
+                  as int,
+        quizzesTaken: null == quizzesTaken
+            ? _value.quizzesTaken
+            : quizzesTaken // ignore: cast_nullable_to_non_nullable
+                  as int,
+        minutesPracticed: null == minutesPracticed
+            ? _value.minutesPracticed
+            : minutesPracticed // ignore: cast_nullable_to_non_nullable
+                  as int,
+        weeklyStreak: null == weeklyStreak
+            ? _value._weeklyStreak
+            : weeklyStreak // ignore: cast_nullable_to_non_nullable
+                  as List<bool>,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$UserStatsImpl implements _UserStats {
+  const _$UserStatsImpl({
+    this.currentStreak = 0,
+    this.bestStreak = 0,
+    this.quizzesTaken = 0,
+    this.minutesPracticed = 0,
+    final List<bool> weeklyStreak = const [],
+  }) : _weeklyStreak = weeklyStreak;
+
+  factory _$UserStatsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserStatsImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int currentStreak;
+  @override
+  @JsonKey()
+  final int bestStreak;
+  @override
+  @JsonKey()
+  final int quizzesTaken;
+  @override
+  @JsonKey()
+  final int minutesPracticed;
+  final List<bool> _weeklyStreak;
+  @override
+  @JsonKey()
+  List<bool> get weeklyStreak {
+    if (_weeklyStreak is EqualUnmodifiableListView) return _weeklyStreak;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_weeklyStreak);
+  }
+
+  @override
+  String toString() {
+    return 'UserStats(currentStreak: $currentStreak, bestStreak: $bestStreak, quizzesTaken: $quizzesTaken, minutesPracticed: $minutesPracticed, weeklyStreak: $weeklyStreak)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserStatsImpl &&
+            (identical(other.currentStreak, currentStreak) ||
+                other.currentStreak == currentStreak) &&
+            (identical(other.bestStreak, bestStreak) ||
+                other.bestStreak == bestStreak) &&
+            (identical(other.quizzesTaken, quizzesTaken) ||
+                other.quizzesTaken == quizzesTaken) &&
+            (identical(other.minutesPracticed, minutesPracticed) ||
+                other.minutesPracticed == minutesPracticed) &&
+            const DeepCollectionEquality().equals(
+              other._weeklyStreak,
+              _weeklyStreak,
+            ));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+    runtimeType,
+    currentStreak,
+    bestStreak,
+    quizzesTaken,
+    minutesPracticed,
+    const DeepCollectionEquality().hash(_weeklyStreak),
+  );
+
+  /// Create a copy of UserStats
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserStatsImplCopyWith<_$UserStatsImpl> get copyWith =>
+      __$$UserStatsImplCopyWithImpl<_$UserStatsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UserStatsImplToJson(this);
+  }
+}
+
+abstract class _UserStats implements UserStats {
+  const factory _UserStats({
+    final int currentStreak,
+    final int bestStreak,
+    final int quizzesTaken,
+    final int minutesPracticed,
+    final List<bool> weeklyStreak,
+  }) = _$UserStatsImpl;
+
+  factory _UserStats.fromJson(Map<String, dynamic> json) =
+      _$UserStatsImpl.fromJson;
+
+  @override
+  int get currentStreak;
+  @override
+  int get bestStreak;
+  @override
+  int get quizzesTaken;
+  @override
+  int get minutesPracticed;
+  @override
+  List<bool> get weeklyStreak;
+
+  /// Create a copy of UserStats
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserStatsImplCopyWith<_$UserStatsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 UserModel _$UserModelFromJson(Map<String, dynamic> json) {
   return _UserModel.fromJson(json);
 }
@@ -28,12 +293,7 @@ mixin _$UserModel {
   String get profileImageUrl => throw _privateConstructorUsedError;
   bool get isEmailVerified => throw _privateConstructorUsedError;
   bool get isPhoneVerified => throw _privateConstructorUsedError;
-  int get currentStreak => throw _privateConstructorUsedError;
-  int get bestStreak => throw _privateConstructorUsedError;
-  int get quizzesTaken => throw _privateConstructorUsedError;
-  int get minutesPracticed => throw _privateConstructorUsedError;
-  List<bool> get weeklyStreak =>
-      throw _privateConstructorUsedError; // 7 booleans for each day of week
+  UserStats get stats => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get lastLoginAt => throw _privateConstructorUsedError;
 
@@ -60,14 +320,12 @@ abstract class $UserModelCopyWith<$Res> {
     String profileImageUrl,
     bool isEmailVerified,
     bool isPhoneVerified,
-    int currentStreak,
-    int bestStreak,
-    int quizzesTaken,
-    int minutesPracticed,
-    List<bool> weeklyStreak,
+    UserStats stats,
     DateTime? createdAt,
     DateTime? lastLoginAt,
   });
+
+  $UserStatsCopyWith<$Res> get stats;
 }
 
 /// @nodoc
@@ -92,11 +350,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? profileImageUrl = null,
     Object? isEmailVerified = null,
     Object? isPhoneVerified = null,
-    Object? currentStreak = null,
-    Object? bestStreak = null,
-    Object? quizzesTaken = null,
-    Object? minutesPracticed = null,
-    Object? weeklyStreak = null,
+    Object? stats = null,
     Object? createdAt = freezed,
     Object? lastLoginAt = freezed,
   }) {
@@ -130,26 +384,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 ? _value.isPhoneVerified
                 : isPhoneVerified // ignore: cast_nullable_to_non_nullable
                       as bool,
-            currentStreak: null == currentStreak
-                ? _value.currentStreak
-                : currentStreak // ignore: cast_nullable_to_non_nullable
-                      as int,
-            bestStreak: null == bestStreak
-                ? _value.bestStreak
-                : bestStreak // ignore: cast_nullable_to_non_nullable
-                      as int,
-            quizzesTaken: null == quizzesTaken
-                ? _value.quizzesTaken
-                : quizzesTaken // ignore: cast_nullable_to_non_nullable
-                      as int,
-            minutesPracticed: null == minutesPracticed
-                ? _value.minutesPracticed
-                : minutesPracticed // ignore: cast_nullable_to_non_nullable
-                      as int,
-            weeklyStreak: null == weeklyStreak
-                ? _value.weeklyStreak
-                : weeklyStreak // ignore: cast_nullable_to_non_nullable
-                      as List<bool>,
+            stats: null == stats
+                ? _value.stats
+                : stats // ignore: cast_nullable_to_non_nullable
+                      as UserStats,
             createdAt: freezed == createdAt
                 ? _value.createdAt
                 : createdAt // ignore: cast_nullable_to_non_nullable
@@ -161,6 +399,16 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserStatsCopyWith<$Res> get stats {
+    return $UserStatsCopyWith<$Res>(_value.stats, (value) {
+      return _then(_value.copyWith(stats: value) as $Val);
+    });
   }
 }
 
@@ -181,14 +429,13 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String profileImageUrl,
     bool isEmailVerified,
     bool isPhoneVerified,
-    int currentStreak,
-    int bestStreak,
-    int quizzesTaken,
-    int minutesPracticed,
-    List<bool> weeklyStreak,
+    UserStats stats,
     DateTime? createdAt,
     DateTime? lastLoginAt,
   });
+
+  @override
+  $UserStatsCopyWith<$Res> get stats;
 }
 
 /// @nodoc
@@ -212,11 +459,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? profileImageUrl = null,
     Object? isEmailVerified = null,
     Object? isPhoneVerified = null,
-    Object? currentStreak = null,
-    Object? bestStreak = null,
-    Object? quizzesTaken = null,
-    Object? minutesPracticed = null,
-    Object? weeklyStreak = null,
+    Object? stats = null,
     Object? createdAt = freezed,
     Object? lastLoginAt = freezed,
   }) {
@@ -250,26 +493,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
             ? _value.isPhoneVerified
             : isPhoneVerified // ignore: cast_nullable_to_non_nullable
                   as bool,
-        currentStreak: null == currentStreak
-            ? _value.currentStreak
-            : currentStreak // ignore: cast_nullable_to_non_nullable
-                  as int,
-        bestStreak: null == bestStreak
-            ? _value.bestStreak
-            : bestStreak // ignore: cast_nullable_to_non_nullable
-                  as int,
-        quizzesTaken: null == quizzesTaken
-            ? _value.quizzesTaken
-            : quizzesTaken // ignore: cast_nullable_to_non_nullable
-                  as int,
-        minutesPracticed: null == minutesPracticed
-            ? _value.minutesPracticed
-            : minutesPracticed // ignore: cast_nullable_to_non_nullable
-                  as int,
-        weeklyStreak: null == weeklyStreak
-            ? _value._weeklyStreak
-            : weeklyStreak // ignore: cast_nullable_to_non_nullable
-                  as List<bool>,
+        stats: null == stats
+            ? _value.stats
+            : stats // ignore: cast_nullable_to_non_nullable
+                  as UserStats,
         createdAt: freezed == createdAt
             ? _value.createdAt
             : createdAt // ignore: cast_nullable_to_non_nullable
@@ -294,14 +521,10 @@ class _$UserModelImpl implements _UserModel {
     this.profileImageUrl = '',
     this.isEmailVerified = false,
     this.isPhoneVerified = false,
-    this.currentStreak = 0,
-    this.bestStreak = 0,
-    this.quizzesTaken = 0,
-    this.minutesPracticed = 0,
-    final List<bool> weeklyStreak = const [],
+    this.stats = const UserStats(),
     this.createdAt,
     this.lastLoginAt,
-  }) : _weeklyStreak = weeklyStreak;
+  });
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -329,26 +552,7 @@ class _$UserModelImpl implements _UserModel {
   final bool isPhoneVerified;
   @override
   @JsonKey()
-  final int currentStreak;
-  @override
-  @JsonKey()
-  final int bestStreak;
-  @override
-  @JsonKey()
-  final int quizzesTaken;
-  @override
-  @JsonKey()
-  final int minutesPracticed;
-  final List<bool> _weeklyStreak;
-  @override
-  @JsonKey()
-  List<bool> get weeklyStreak {
-    if (_weeklyStreak is EqualUnmodifiableListView) return _weeklyStreak;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_weeklyStreak);
-  }
-
-  // 7 booleans for each day of week
+  final UserStats stats;
   @override
   final DateTime? createdAt;
   @override
@@ -356,7 +560,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, phoneNumber: $phoneNumber, profileImageUrl: $profileImageUrl, isEmailVerified: $isEmailVerified, isPhoneVerified: $isPhoneVerified, currentStreak: $currentStreak, bestStreak: $bestStreak, quizzesTaken: $quizzesTaken, minutesPracticed: $minutesPracticed, weeklyStreak: $weeklyStreak, createdAt: $createdAt, lastLoginAt: $lastLoginAt)';
+    return 'UserModel(id: $id, name: $name, email: $email, phoneNumber: $phoneNumber, profileImageUrl: $profileImageUrl, isEmailVerified: $isEmailVerified, isPhoneVerified: $isPhoneVerified, stats: $stats, createdAt: $createdAt, lastLoginAt: $lastLoginAt)';
   }
 
   @override
@@ -375,18 +579,7 @@ class _$UserModelImpl implements _UserModel {
                 other.isEmailVerified == isEmailVerified) &&
             (identical(other.isPhoneVerified, isPhoneVerified) ||
                 other.isPhoneVerified == isPhoneVerified) &&
-            (identical(other.currentStreak, currentStreak) ||
-                other.currentStreak == currentStreak) &&
-            (identical(other.bestStreak, bestStreak) ||
-                other.bestStreak == bestStreak) &&
-            (identical(other.quizzesTaken, quizzesTaken) ||
-                other.quizzesTaken == quizzesTaken) &&
-            (identical(other.minutesPracticed, minutesPracticed) ||
-                other.minutesPracticed == minutesPracticed) &&
-            const DeepCollectionEquality().equals(
-              other._weeklyStreak,
-              _weeklyStreak,
-            ) &&
+            (identical(other.stats, stats) || other.stats == stats) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.lastLoginAt, lastLoginAt) ||
@@ -404,11 +597,7 @@ class _$UserModelImpl implements _UserModel {
     profileImageUrl,
     isEmailVerified,
     isPhoneVerified,
-    currentStreak,
-    bestStreak,
-    quizzesTaken,
-    minutesPracticed,
-    const DeepCollectionEquality().hash(_weeklyStreak),
+    stats,
     createdAt,
     lastLoginAt,
   );
@@ -436,11 +625,7 @@ abstract class _UserModel implements UserModel {
     final String profileImageUrl,
     final bool isEmailVerified,
     final bool isPhoneVerified,
-    final int currentStreak,
-    final int bestStreak,
-    final int quizzesTaken,
-    final int minutesPracticed,
-    final List<bool> weeklyStreak,
+    final UserStats stats,
     final DateTime? createdAt,
     final DateTime? lastLoginAt,
   }) = _$UserModelImpl;
@@ -463,15 +648,7 @@ abstract class _UserModel implements UserModel {
   @override
   bool get isPhoneVerified;
   @override
-  int get currentStreak;
-  @override
-  int get bestStreak;
-  @override
-  int get quizzesTaken;
-  @override
-  int get minutesPracticed;
-  @override
-  List<bool> get weeklyStreak; // 7 booleans for each day of week
+  UserStats get stats;
   @override
   DateTime? get createdAt;
   @override

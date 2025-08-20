@@ -64,6 +64,7 @@ dependencies:
   shared_preferences: ^2.2.2
   url_launcher: ^6.2.1
   result_type: ^0.2.0
+  google_fonts: ^6.1.0
 
   # Data Handling
   equatable: ^2.0.5

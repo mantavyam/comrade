@@ -7,9 +7,9 @@ import '../../auth/application/auth_cubit.dart';
 import '../../auth/application/auth_state.dart';
 import '../../profile/presentation/profile_screen.dart';
 import '../../news/domain/news_model.dart';
-import '../widgets/news_card.dart';
 import '../widgets/expanded_news_detail.dart';
 import '../widgets/notifications_screen.dart';
+import '../widgets/card_deck_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,8 +19,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final PageController _pageController = PageController();
-  int _currentIndex = 0;
 
   // Mock news data - will be replaced with real data from API
   final List<NewsModel> _mockNews = [
@@ -80,7 +78,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    _pageController.dispose();
     super.dispose();
   }
 
@@ -210,29 +207,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildScrollableCards() {
-    return PageView.builder(
-      controller: _pageController,
-      scrollDirection: Axis.vertical,
-      itemCount: _mockNews.length,
-      onPageChanged: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: KSizes.padding4x,
-            vertical: KSizes.padding2x,
-          ),
-          child: NewsCard(
-            news: _mockNews[index],
-            onTap: () => _openFullNews(_mockNews[index]),
-            onBookmarkTap: () => _toggleBookmark(index),
-            onShareTap: () => _shareNews(_mockNews[index]),
-          ),
-        );
-      },
+    return CardDeckWidget(
+      cards: _mockNews,
+      onCardTap: _openFullNews,
+      onBookmarkTap: _toggleBookmark,
+      onShareTap: _shareNews,
+      onEndReached: _showEndOfCardsDialog,
     );
   }
 
@@ -277,5 +257,19 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
+  void _showEndOfCardsDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('All caught up!'),
+        content: const Text('You\'ve seen all the latest news. Check back later for more updates.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
 }

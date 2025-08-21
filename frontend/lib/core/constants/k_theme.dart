@@ -12,6 +12,8 @@ class KTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
+      materialTapTargetSize: MaterialTapTargetSize.padded,
+      fontFamily: 'Urbanist', // Set Urbanist as the default font family
       
       // Color Scheme
       colorScheme: const ColorScheme.dark(
@@ -35,6 +37,7 @@ class KTheme {
         centerTitle: true,
         systemOverlayStyle: SystemUiOverlayStyle.light,
         titleTextStyle: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textPrimary,
           fontSize: KSizes.fontSizeXL,
           fontWeight: FontWeight.w600,
@@ -49,10 +52,12 @@ class KTheme {
         type: BottomNavigationBarType.fixed,
         elevation: KSizes.elevationMedium,
         selectedLabelStyle: TextStyle(
+          fontFamily: 'Urbanist',
           fontSize: KSizes.fontSizeS,
           fontWeight: FontWeight.w600,
         ),
         unselectedLabelStyle: TextStyle(
+          fontFamily: 'Urbanist',
           fontSize: KSizes.fontSizeS,
           fontWeight: FontWeight.w400,
         ),
@@ -79,6 +84,7 @@ class KTheme {
             borderRadius: BorderRadius.circular(KSizes.radiusButton),
           ),
           textStyle: const TextStyle(
+            fontFamily: 'Urbanist',
             fontSize: KSizes.fontSizeL,
             fontWeight: FontWeight.w600,
           ),
@@ -90,6 +96,7 @@ class KTheme {
         style: TextButton.styleFrom(
           foregroundColor: KColors.primary,
           textStyle: const TextStyle(
+            fontFamily: 'Urbanist',
             fontSize: KSizes.fontSizeM,
             fontWeight: FontWeight.w600,
           ),
@@ -106,6 +113,7 @@ class KTheme {
             borderRadius: BorderRadius.circular(KSizes.radiusButton),
           ),
           textStyle: const TextStyle(
+            fontFamily: 'Urbanist',
             fontSize: KSizes.fontSizeL,
             fontWeight: FontWeight.w600,
           ),
@@ -137,10 +145,12 @@ class KTheme {
           vertical: KSizes.padding3x,
         ),
         hintStyle: const TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.inputHint,
           fontSize: KSizes.fontSizeM,
         ),
         labelStyle: const TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textSecondary,
           fontSize: KSizes.fontSizeM,
         ),
@@ -149,76 +159,91 @@ class KTheme {
       // Text Theme
       textTheme: const TextTheme(
         displayLarge: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textPrimary,
           fontSize: KSizes.fontSizeLargeHeading,
           fontWeight: FontWeight.bold,
         ),
         displayMedium: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textPrimary,
           fontSize: KSizes.fontSizeHeading,
           fontWeight: FontWeight.bold,
         ),
         displaySmall: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textPrimary,
           fontSize: KSizes.fontSizeTitle,
           fontWeight: FontWeight.w600,
         ),
         headlineLarge: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textPrimary,
           fontSize: KSizes.fontSizeXXXL,
           fontWeight: FontWeight.w600,
         ),
         headlineMedium: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textPrimary,
           fontSize: KSizes.fontSizeXXL,
           fontWeight: FontWeight.w600,
         ),
         headlineSmall: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textPrimary,
           fontSize: KSizes.fontSizeXL,
           fontWeight: FontWeight.w600,
         ),
         titleLarge: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textPrimary,
           fontSize: KSizes.fontSizeL,
           fontWeight: FontWeight.w600,
         ),
         titleMedium: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textPrimary,
           fontSize: KSizes.fontSizeM,
           fontWeight: FontWeight.w500,
         ),
         titleSmall: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textSecondary,
           fontSize: KSizes.fontSizeS,
           fontWeight: FontWeight.w500,
         ),
         bodyLarge: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textPrimary,
           fontSize: KSizes.fontSizeL,
           fontWeight: FontWeight.w400,
         ),
         bodyMedium: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textPrimary,
           fontSize: KSizes.fontSizeM,
           fontWeight: FontWeight.w400,
         ),
         bodySmall: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textSecondary,
           fontSize: KSizes.fontSizeS,
           fontWeight: FontWeight.w400,
         ),
         labelLarge: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textPrimary,
           fontSize: KSizes.fontSizeM,
           fontWeight: FontWeight.w500,
         ),
         labelMedium: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textSecondary,
           fontSize: KSizes.fontSizeS,
           fontWeight: FontWeight.w500,
         ),
         labelSmall: TextStyle(
+          fontFamily: 'Urbanist',
           color: KColors.textTertiary,
           fontSize: KSizes.fontSizeXS,
           fontWeight: FontWeight.w400,

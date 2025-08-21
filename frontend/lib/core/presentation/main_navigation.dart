@@ -93,7 +93,17 @@ class _MainNavigationState extends State<MainNavigation> {
         });
       },
       child: Container(
-        padding: const EdgeInsets.all(KSizes.padding4x),
+        // Increased tap target size to meet Material Design guidelines (48x48 dp minimum)
+        width: 48,
+        height: 48,
+        padding: const EdgeInsets.all(KSizes.padding2x),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(KSizes.radiusM),
+          // Optional: Add subtle background for active state
+          color: isSelected 
+              ? KColors.bottomNavSelected.withValues(alpha: 0.1) 
+              : Colors.transparent,
+        ),
         child: Icon(
           isSelected ? activeIcon : icon,
           size: KSizes.iconL,

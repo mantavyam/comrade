@@ -7,10 +7,10 @@ class KStrings {
   static const String appTagline = 'Defense Aspirants App';
 
   // Welcome & Onboarding
-  static const String welcomeTitle = 'Welcome Comrade';
-  static const String welcomeSubtitle = 'Enjoy Your stay in future and invest in shaping it';
+  static const String welcomeTitle = 'Welcome \n to Comrade';
+  static const String welcomeSubtitle = 'Enjoy Your stay in future \n and invest in shaping it';
   static const String getStarted = 'Get Started';
-  static const String termsAndConditions = 'By Continuing you agree to Terms and Conditions';
+  static const String termsAndConditions = 'By Continuing you agree to \n Terms and Conditions';
 
   // Authentication
   static const String welcomeBack = 'Welcome Back';

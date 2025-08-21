@@ -47,6 +47,7 @@ class KSizes {
   static const double radiusDefault = radiusM;
   static const double radiusCard = radiusL;
   static const double radiusButton = radiusM;
+  static const double roundedButton = radiusXXL;
 
   // Icon Sizes
   static const double iconXS = 12.0;

@@ -134,6 +134,7 @@ app.*.map.json
 **/android/gradle/wrapper/gradle-wrapper.properties
 
 # Signing files
+**/android/comrade-sha-keys.md
 *.jks
 *.keystore
 
@@ -176,8 +177,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/

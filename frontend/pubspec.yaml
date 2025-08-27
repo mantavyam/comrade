@@ -54,7 +54,7 @@ dependencies:
   firebase_core: ^4.0.0
   firebase_auth: ^6.0.0
   cloud_firestore: ^6.0.0
-  google_sign_in: ^7.0.0
+  google_sign_in: ^6.2.1
 
   # UI Components
   flutter_swiper_view: ^1.1.8
@@ -70,6 +70,8 @@ dependencies:
 
   # Data Handling
   equatable: ^2.0.5
+  sign_in_with_apple: ^7.0.1
+  crypto: ^3.0.6
 
 dev_dependencies:
   flutter_test:

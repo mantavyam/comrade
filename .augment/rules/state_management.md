@@ -1,6 +1,5 @@
 ---
-type: "agent_requested"
-description: "Example description"
+type: "always_apply"
 ---
 
 # State Management Guidelines
